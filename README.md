@@ -1,2 +1,2 @@
-# lock-in-app
-App to block Instagram Reels while allowing you to message
+# Lock-In Android App
+This is a very simple app written with Flutter that stops you from scrolling on Instagram. Endlessly scrolling on Reels is addictive and can be a huge time sink. Unfortunately, most options that disable Instagram also stop you from messaging on the platform and/or seeing notifications for those messages. So I built this app that and returns you to the home screen if it detects scrolling when you're using Instagram, which still allows you to use the app for messaging and seeing your friends stories. 
