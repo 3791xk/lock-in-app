@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   runApp(const MainApp());
@@ -16,11 +17,6 @@ class MainApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const HomePage(title: 'Lock-In Home Page'),
-      // home: const Scaffold(
-      //   body: Center(
-      //     child: Text('Hello World!'),
-      //   ),
-      // ),
     );
   }
 }
@@ -35,13 +31,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   bool _isBlocking = false;
-  final platform = MethodChannel('com.yourapp.blocker');
+  final platform = const MethodChannel('com.yourapp.blocker');
 
   void _toggleBlocking(bool enabled) async {
     setState(() => _isBlocking = enabled);
     try {
       await platform.invokeMethod(enabled ? 'startBlock' : 'stopBlock');
     } catch (e) {
+      // ignore: avoid_print
       print("Failed to toggle: $e");
     }
   }
@@ -54,12 +51,11 @@ class _HomePageState extends State<HomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        //child: Text('Welcome to the Lock-In App!'),
         child: SwitchListTile(
               title: const Text("Block Instagram scrolling"),
               value: _isBlocking,
               onChanged: _toggleBlocking,
-            );
+            )
       ),
     );
   }
